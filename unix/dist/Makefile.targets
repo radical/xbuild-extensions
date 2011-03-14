@@ -1,7 +1,5 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
 	<Target Name="GetDistFiles" Outputs="@(DistFiles);@(DistFilesFromRef)">
-		<Message Text="DistDir : $(DistDir)"/>
-		<Message Text="ProjectReference : %(ProjectReference.Identity) RDr: %(ProjectReference.RelativeDir)"/>
 		<CreateItem Include="@(Compile);@(EmbeddedResource);@(None);@(Content);@(ExtraDistFiles)">
 			<Output TaskParameter="Include" ItemName="Files"/>
 		</CreateItem>

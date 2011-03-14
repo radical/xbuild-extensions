@@ -1,0 +1,18 @@
+Dist targets:
+
+Tries to provide functionality similar to 'make dist'.
+
+$(DistDir) specifies the dir where to copy the files.
+
+$(TargetExtensionsDir) specifies the extensions dir where to
+install these targets.
+
+By default, it will collect all the @(Compile), @(EmbeddedResource),
+@(Content) and @(None) item lists. If there are other files that
+should be included in the dist, then those can be specified in
+the @(ExtraDist) item list. eg:
+
+ <ItemGroup>
+	<ExtraDist Include="images\one.gif"/>
+	<ExtraDist Include="images\two.gif"/>
+ </ItemGroup>
