@@ -1,0 +1,9 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0" DefaultTargets="Install">
+	<ItemGroup>
+		<Projects Include="unix\dist\build.proj"/>
+	</ItemGroup>
+
+	<Target Name="Install">
+		<MSBuild Projects="@(Projects)" Targets="Install"/>
+	</Target>
+</Project>

@@ -1,0 +1,8 @@
+Install:
+
+xbuild build.proj
+
+unix/
+	dist: Targets for supporting 'make dist'
+	Use /p:TargetExtensionsDir=<dir> to control where
+	to install the dist targets

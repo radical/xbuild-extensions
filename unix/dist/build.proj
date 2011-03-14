@@ -1,0 +1,13 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0" DefaultTargets="Install">
+	<PropertyGroup>
+		<TargetExtensionsPath Condition="'$(TargetExtensionsPath)' == ''">$(MSBuildExtensionsPath)</TargetExtensionsPath>
+	</PropertyGroup>
+
+	<Target Name="Install">
+		<Message Text="Installing dist targets to $(TargetExtensionsPath)"/>
+		<Copy SourceFiles="Makefile.targets"
+			DestinationFolder="$(TargetExtensionsPath)\4.0\Microsoft.Common.targets\ImportAfter"/>
+		<Copy SourceFiles="Makefile.sln.targets"
+			DestinationFolder="$(TargetExtensionsPath)\4.0\SolutionFile\ImportAfter"/>
+	</Target>
+</Project>
