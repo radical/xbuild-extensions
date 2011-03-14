@@ -1,0 +1,27 @@
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<Target Name="Dist">
+		<Error Text="DistDir property not defined" Condition="'$(DistDir)' == ''"/>
+
+		<CreateProperty Value="$(DistDir)\" Condition="!HasTrailingSlash('$(DistDir)')">
+			<Output TaskParameter="Value" PropertyName="DistDir" />
+		</CreateProperty>
+
+		<CreateItem Include="$(MSBuildProjectFullPath)">
+			<Output TaskParameter="Include" ItemName="ProjectFileItem"/>
+		</CreateItem>
+	
+		<CreateItem Include="$(MSBuildProjectFullPath)" AdditionalMetadata="TargetPath=$(DistDir)\%(ProjectFileItem.RelativeDir)\$(MSBuildProjectFile)">
+			<Output TaskParameter="Include" ItemName="DistFiles"/>
+		</CreateItem>
+
+		<Message Text="GetDistFiles(sln): DistDir: $(DistDir)"/>
+		<MSBuild
+			Projects="@(ProjectReference)"
+			Targets="GetDistFiles"
+			Properties="DistDir=$(DistDir)\%(ProjectReference.RelativeDir);BuildingSolution=true">
+			<Output TaskParameter="TargetOutputs" ItemName="DistFiles"/>
+		</MSBuild>
+
+		<Copy SourceFiles="%(DistFiles.FullPath)" DestinationFiles="%(DistFiles.TargetPath)" />
+	</Target>
+</Project>
