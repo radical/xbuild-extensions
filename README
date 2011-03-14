@@ -1,3 +1,5 @@
+Tasks and targets for extending xbuild/msbuild projects.
+
 Install:
 
 xbuild build.proj
